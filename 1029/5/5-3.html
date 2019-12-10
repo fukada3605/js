@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>5-2割り勘</title>
+		<style>
+			*{padding:0px auto; margin: 0px auto;}
+			p{width: 150px;}
+		</style>
+    </head>
+	<body>
+        <p>合計金額<input type="text" id="input1"></p>
+		<p>人数<input type="text" id="input2"></p>
+		<p>先生の人数<input type="text" id="input3"></p>		
+		<p>生徒(男性)の人数<input type="text" id="input4"></p>
+		<p>生徒(女性)の人数<input type="text" id="input5"></p>
+		<p>
+		<button onclick="btn1();">計算</button>
+		</p>
+		<p id="output1">結果を表示</p>
+		<p id="output2"></p>
+		<p id="output3"></p>
+		<p id="output4"></p>
+		<script>
+            const INPUT1=document.getElementById("input1");
+			const INPUT2=document.getElementById("input2");
+			const INPUT3=document.getElementById("input3");
+			const INPUT4=document.getElementById("input4");
+			const INPUT5=document.getElementById("input5");		
+			const OUTPUT1=document.getElementById("output1");
+			const OUTPUT2=document.getElementById("output2");
+			const OUTPUT3=document.getElementById("output3");
+			const OUTPUT4=document.getElementById("output4");
+            
+			function btn1(){
+				let money=Number(INPUT1.value);
+                let person_num=Number(INPUT2.value);
+				let teacher_num=Number(INPUT3.value);
+				let man_num=Number(INPUT4.value);
+				let woman_num=Number(INPUT5.value);
+				let teacher_pay;
+				let man_pay;
+				let woman_pay;
+				person_num--;
+				money=money-(teacher_num*1000+man_num*500);
+				woman_pay=money/(person_num);
+				man_pay=woman_pay+500;
+				teacher_pay=woman_pay+1000;
+				OUTPUT1.innerHTML="幹事は:0円です";
+				OUTPUT2.innerHTML="先生は:"+teacher_pay+"円です";
+				OUTPUT3.innerHTML="生徒(男性)は:"+man_pay+"円です";
+				OUTPUT4.innerHTML="生徒(女性)は:"+woman_pay+"円です";
+			}
+		</script>
+	</body>
+</html>

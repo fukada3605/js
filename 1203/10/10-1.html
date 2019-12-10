@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>10-1css</title>
+		<style>
+			*{margin: 0px;padding: 0px;}
+			/*margin 外余白　padding 内余白 */
+			div{
+				border: 1px solid gray;/*枠線*/
+				width: 200px; /*横幅*/
+				height: 200px;/*高さ*/
+				margin: 50px auto;
+				/*外余白　上下　左右*/
+				text-align: center; /*左右そろえ*/
+				line-height: 200px; /*上下そろえ*/
+				transition: all 1s linear;
+				/*時間の変化　1秒　等速度*/
+			}
+		</style>
+    </head>
+	<body>
+		<!--<input type="range" name="size" id="FS" min="0" max="10" value="">-->
+		<div id = "box1" onclick="btn1();">サンプル</div>
+		<script>
+			const BOX1 = document.getElementById("box1");
+			BOX1.style.transform="rotate(140deg)";
+			function btn1(){
+				//BOX1のcssの文字の色は赤です。
+				//#box1(color:red;)
+				BOX1.style.color = "red";
+				//#box1(width:300px;)
+				BOX1.style.width = "300px";
+				//#box1(height:250px;)
+				BOX1.style.height = "250px";
+				//#box1(background-color:blue;)
+				BOX1.style.backgroundColor="blue";
+				//#box1(font-size:40px;)
+				BOX1.style.fontSize="40px";
+				//#box1(fborder-radius:50%;)
+				BOX1.style.borderRadius="30%";
+				//BOX1.style.boxShadow="50px 50px 30px gray";
+				// #box1(transform:rotate(30deg);)
+				BOX1.style.transform="rotate(360deg)";
+				
+			}
+			setInterval(1000,Fontsize);
+			function Fontsize(){
+
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>5-2BMI</title>
+		<style>
+			*{padding:0px auto; margin: 0px auto;}
+			p{width: 200px;}
+		</style>
+    </head>
+	<body>
+        <p>身長<input type="text" id="input1"></p>
+        <p>体重<input type="text" id="input2"></p>
+		<p>
+		<button onclick="btn1();"><p id="output1">結果を表示</p></button>
+		</p>
+		<script>
+            const INPUT1=document.getElementById("input1");
+            const INPUT2=document.getElementById("input2");
+			const OUTPUT1=document.getElementById("output1");
+            
+			function btn1(){
+                let n1=Number(INPUT1.value);
+				let n2=Number(INPUT2.value);
+				let BMI;
+				let n4;
+				let n5;
+				let n6;
+				BMI=n2/((n1/100)*(n1/100));
+				BMI=BMI-(BMI%0.1);
+				if(BMI<18.5){
+					n4="低体重";
+				}else if(n3<25){
+					n4="普通体重"
+				}else{
+					n4="太り気味"
+				}
+				n5=(n1-100)*0.9;
+				if(n5<n2){
+					n6=-(n5-n2)+"kg減らしましょう";
+				}else{
+					n6=n5-n2+"kg増やしましょう";
+				}
+				/*if(n3<18.5){
+					n4="低体重";
+				}
+				if(n3>=18.5&&n3<25){
+					n4="普通体重"
+				}
+				if(n3>=25){
+					n4="太り気味"
+				}*/
+				OUTPUT1.innerHTML="あなたのBMIは<br>"+BMI+"で、<br>"+n4+"です。<br>"+"標準体重は"+n5+"kgで<br>あと"+n6;
+			}
+		</script>
+	</body>
+</html>

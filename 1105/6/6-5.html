@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>6-5,10sec-timetrial</title>
+    </head>
+	<body>
+		<p><button onclick="start1();">start</button>
+			<button onclick="finish1();">finish</button>
+		</p>
+		<p id="time1">startを押してね...</p>
+		<p id="evaluation"></p>
+		<p id="score">score:0点</p>
+		
+		<script>
+			const Time1=document.getElementById("time1");
+			const Eval=document.getElementById("evaluation");
+			const Score=document.getElementById("score");
+			let strattime=0;
+			let score=0;
+			let cleartime;
+			let gameflag=0;
+
+			function start1(){
+				const now = new Date();
+				strattime = now.getTime();
+				Eval.innerHTML="";
+				Time1.innerHTML="10秒でfinishを押してね...";
+				gameflag=1;
+			}
+			
+			function finish1(){
+				if(gameflag){
+					const now = new Date();
+					let finishtime = now.getTime();
+					cleartime=(finishtime-strattime)/1000;
+					Time1.innerHTML=cleartime;
+					getscore();
+					gameflag=0;
+				}
+			}
+
+			function getscore(){
+				
+				if(cleartime<9){
+					Eval.innerHTML="早いです";
+					score--;
+				}else if(cleartime>11){
+					Eval.innerHTML="遅いです";
+					score--;
+				}else{
+					Eval.innerHTML="クリアです";
+					score++;
+				}
+				if(score<0){
+					score=0;
+				}
+				Score.innerHTML="score:"+score+"点"
+					
+				
+			}
+
+			//デバッグ用
+			const DEBUG=0;
+			if(DEBUG){
+				setInterval(test,1);
+				function test(){
+					const now = new Date();
+					let finishtime = now.getTime();
+					cleartime=(finishtime-strattime)/1000;
+					console.log(cleartime);
+				}
+			}
+		</script>
+
+	</body>
+</html>

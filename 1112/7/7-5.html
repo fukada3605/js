@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>7-5乱数</title>
+    </head>
+	<body>
+		
+		<p>
+			名前:<input type="text" id="input1">
+			<button onclick='eval();'>あなたの将来の職業は</button>
+		</p>
+		<p id="output1">結果</p>
+		<p id="output2"></p>
+
+		<script>
+			const INPUT1=document.getElementById("input1");
+			const OUTPUT1=document.getElementById("output1");
+			const OUTPUT2=document.getElementById("output2");
+			OUTPUT1.innerHTML="名前を入力してください";
+			let job;
+			const AUDIO1 = new Audio();
+			AUDIO1.src="correct2.mp3";
+			function eval(){
+				let name=INPUT1.value;
+				let n1 = Math.floor( Math.random()*7);
+				let result;
+				if(name==""){
+					OUTPUT1.innerHTML="名前を入力してください";
+					return;
+				}
+				if(n1==0){job="消防士";}
+				if(n1==1){job="警察官";}
+				if(n1==2){job="公務員";}
+				if(n1==3){job="教師";}
+				if(n1==4){job="エンジニア";}
+				if(n1==5){job="ゲーマー";}
+				if(n1==6){job="youtuber";}
+				
+				result=name+"さんの将来の職業は"+job+"です。"
+				OUTPUT1.innerHTML = result;
+				AUDIO1.correntTime=0;
+				AUDIO1.play();
+				Next(n1);
+			}
+			function Next(n){
+				OUTPUT2.innerHTML='<a href="https://www.google.com/search?q='+job+'&oq='+job+'">'+job+'に関する情報は</a>';
+			}
+		</script>
+
+	</body>
+</html>

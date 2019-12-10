@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>3,出力</title>
+    </head>
+	<body>
+		<button onclick="btn1();">押すな！</button>
+		<p id="output1">出力場所</p>
+		<script>
+			const OUTPUT1=document.getElementById("output1");
+			let i=0;
+			function btn1(){
+				let n1="第一段階(100回)：";
+				i++;
+				if(i>99){
+					n2="クリア";
+				}else{
+					n2=i+"回";
+				}
+				let n3=n1+n2;
+				OUTPUT1.innerHTML=n3;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>11-1マウス座標</title>
+		<style>
+			*{margin: 0px;padding: 0px;}
+			/*margin 外余白　padding 内余白 */
+			div{
+				background-color:blue;
+				width: 20px; /*横幅*/
+				height: 20px;/*高さ*/
+			}
+		</style>
+    </head>
+	<body>
+		<div id = "box1">〇</div>
+		<script>
+			const BOX1 = document.getElementById("box1");
+			//イベント処理
+			//こういうときだけ関数を動かす->関数名のみ
+			BOX1.addEventListener("mousemove",move1);
+			function move1(e){//e 引数 マウスの動作情報を保持
+				let x = e.clientX;
+				let y = e.clientY;
+				BOX1.innerHTML = "x="+x+"px/y="+y+"px";
+				BOX1.style.transform="translate("+(x-10)+"px,"+(y-10)+"px)";
+			}
+		</script>
+	</body>
+</html>

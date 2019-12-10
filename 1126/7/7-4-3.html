@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>7-4ジャンケン</title>
+    </head>
+	<body>
+		<p>
+			音量<input id="volume_control" type="range" min="0" max="1" step="0.1" value="0"><output id ></output>
+		</p>
+		<p>
+			<button onclick='janken("グー")' id="gu"><img src="gu.jpg" height="100px"width="100px"></button>
+			<button onclick='janken("チョキ")' id="chi"><img src="chi.jpg"height="100px"width="100px"></button>
+			<button onclick='janken("パー")' id="pa"><img src="pa.jpg"height="100px"width="100px"></button>
+		</p>
+		<p id="output1">じゃんけん</p>
+
+		<script>
+			const OUTPUT1=document.getElementById("output1");
+			const VLM_ctrl=document.getElementById("volume_control");
+			let point=0;
+			let judge;
+			let pointKey = "Score";
+			let volumeKey = "Volume";
+			let wincntKey = "win";
+			let playtimesKey = "times";
+			let win = 0;
+			let times = 0;
+			let winper;
+			if(localStorage.getItem(pointKey)!==null){
+				point=localStorage.getItem(pointKey);
+			}
+			if(localStorage.getItem(volumeKey)!==null){
+				VLM_ctrl.value=localStorage.getItem(volumeKey);
+			}
+			if(localStorage.getItem(wincntKey)!==null){
+				win=localStorage.getItem(wincntKey);
+			}
+			if(localStorage.getItem(playtimesKey)!==null){
+				times=localStorage.getItem(playtimesKey);
+			}
+			const AUDIO1 = new Audio();
+			AUDIO1.src = "se_maoudamashii_se_applause01.mp3";
+			const AUDIO2 = new Audio();
+			AUDIO2.src = "se_maoudamashii_onepoint30.mp3";
+			
+			function cntwin(){
+				win++;
+			}
+			function cntt(){
+				times++;
+			}
+			function Power(n,i){
+				if(i===0){
+					return 1;
+				}
+				i--;
+				return n*Power(n,i);
+			}
+			function per(){
+				winper = parseInt(win /times*Power(10,3))/Power(10,1); 
+			}
+			setInterval(setVolume,100);
+			function setVolume(){
+				AUDIO1.volume=VLM_ctrl.value;
+				AUDIO2.volume=VLM_ctrl.value;
+				localStorage.setItem(volumeKey,VLM_ctrl.value);
+				if(AUDIO1.currentTime>=1||AUDIO2.currentTime>=1){
+					AUDIO1.currentTime=0;
+					AUDIO2.currentTime=0;
+					AUDIO1.pause();
+					AUDIO2.pause();
+				}
+			}
+			
+			function janken(player){
+				let pc = Math.floor( Math.random()*3);
+				let pc_img;
+				let player_img;
+				if(pc===0){pc="グー";}
+				if(pc===1){pc="チョキ"}
+				if(pc===2){pc ="パー";}
+
+				if(player==="チョキ"){
+					if(pc==="チョキ"){judge="あいこ";}
+					if(pc==="パー"){judge="勝ち";point++;}
+					if(pc==="グー"){judge="負け";point--;}
+				}
+				if(player==="パー"){
+					if(pc==="パー"){judge="あいこ";}
+					if(pc==="グー"){judge="勝ち";point++;}
+					if(pc==="チョキ"){judge="負け";point--;}
+				}
+				if(player==="グー"){
+					if(pc==="グー"){judge="あいこ";}
+					if(pc==="チョキ"){judge="勝ち";point++;}
+					if(pc==="パー"){judge="負け";point--;}
+				}
+				if(point<0){
+					point=0;
+				}
+
+				if( pc  ===  "グー" ){pc_img = '<img src="gu.jpg"height="50px"width="50px">';}
+				if( pc === "チョキ" ){pc_img = '<img src="chi.jpg"height="50px"width="50px">';}
+				if( pc  ===  "パー" ){pc_img = '<img src="pa.jpg"height="50px"width="50px">';}
+				if(player=== "グー" ){player_img = '<img src="gu.jpg"height="50px"width="50px">';}
+				if(player==="チョキ"){player_img = '<img src="chi.jpg"height="50px"width="50px">';}
+				if(player=== "パー" ){player_img = '<img src="pa.jpg"height="50px"width="50px">';}
+				if(judge==="勝ち"){AUDIO1.play();cntwin();}
+				if(judge==="あいこ"){AUDIO2.play();}
+				cntt();
+				localStorage.setItem(pointKey,point);
+				localStorage.setItem(wincntKey,win);
+				localStorage.setItem(playtimesKey,times);
+				per();
+				OUTPUT1.innerHTML = "<p>pcは"+pc_img+"</p><p>あなたは"+player_img+"</p><p>判定は："+judge+"</p><p>得点:"+point+"</p><p>勝率は"+winper+"%</p>";
+			}
+
+		</script>
+
+	</body>
+</html>

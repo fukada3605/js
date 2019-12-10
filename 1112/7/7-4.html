@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>7-4ジャンケン</title>
+    </head>
+	<body>
+		<p>
+			音量<input id="volume1" type="range" min="0" max="1" step="0.1" value="0">
+		</p>
+		<p>
+			<button onclick='janken("グー")' id="gu"><img src="gu.jpg" height="100px"width="100px"></button>
+			<button onclick='janken("チョキ")' id="chi"><img src="chi.jpg"height="100px"width="100px"></button>
+			<button onclick='janken("パー")' id="pa"><img src="pa.jpg"height="100px"width="100px"></button>
+		</p>
+		<p id="output1">じゃんけん</p>
+
+		<script>
+			const OUTPUT1=document.getElementById("output1");
+			const VOLUME1=document.getElementById("volume1");
+			let point=0;
+			let judge;
+			const AUDIO1 = new Audio();
+			AUDIO1.src = "se_maoudamashii_se_applause01.mp3";
+			const AUDIO2 = new Audio();
+			AUDIO2.src = "se_maoudamashii_onepoint30.mp3";
+			
+			setInterval(setVolume,100);
+			function setVolume(){
+				AUDIO1.volume=VOLUME1.value;
+				AUDIO2.volume=VOLUME1.value;
+				if(AUDIO1.currentTime>=1||AUDIO2.currentTime>=1){
+					AUDIO1.currentTime=0;
+					AUDIO2.currentTime=0;
+					AUDIO1.pause();
+					AUDIO2.pause();
+				}
+			}
+			function janken(player){
+				let pc = Math.floor( Math.random()*3);
+				if(pc===0){pc="グー";}
+				if(pc===1){pc="チョキ"}
+				if(pc===2){pc ="パー";}
+
+				if(player==="チョキ"){
+					if(pc==="チョキ"){judge="あいこ";}
+					if(pc==="パー"){judge="勝ち";point++;}
+					if(pc==="グー"){judge="負け";point--;}
+				}
+				if(player==="パー"){
+					if(pc==="パー"){judge="あいこ";}
+					if(pc==="グー"){judge="勝ち";point++;}
+					if(pc==="チョキ"){judge="負け";point--;}
+				}
+				if(player==="グー"){
+					if(pc==="グー"){judge="あいこ";}
+					if(pc==="チョキ"){judge="勝ち";point++;}
+					if(pc==="パー"){judge="負け";point--;}
+				}
+
+
+				if( pc  ===  "グー" ){pc = '<img src="gu.jpg"height="50px"width="50px">';}
+				if( pc === "チョキ" ){pc = '<img src="chi.jpg"height="50px"width="50px">';}
+				if( pc  ===  "パー" ){pc = '<img src="pa.jpg"height="50px"width="50px">';}
+				if(player=== "グー" ){player = '<img src="gu.jpg"height="50px"width="50px">';}
+				if(player==="チョキ"){player = '<img src="chi.jpg"height="50px"width="50px">';}
+				if(player=== "パー" ){player = '<img src="pa.jpg"height="50px"width="50px">';}
+				if(judge==="勝ち"){AUDIO1.play();}
+				if(judge==="あいこ"){AUDIO2.play();}
+				OUTPUT1.innerHTML = "<p>pcは"+pc+"</p>"+"<p>あなたは"+player+"</p>"+"<p>"+judge+"</p>"+"<p>得点:"+point+"</p>";
+			}
+
+		</script>
+
+	</body>
+</html>

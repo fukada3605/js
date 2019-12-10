@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js-10-4</title>
+        <style>
+            *{margin: 0px;padding: 0px;}
+            div{
+                border: 1px solid gray;
+                width: 200px;height: 200px;
+				margin: 0px auto;
+            }
+			#box1{
+				transform: 
+                    translateX(-300px);
+				background-image: url(img1.png);
+			}
+            /*#box1{
+                animation: mystory 5s linear 0s 1 normal;
+                animation-fill-mode: both;
+            }*/
+            @keyframes mystory {
+                0%{transform: 
+                    translateX(-300px)}
+                100%{transform: 
+                    translateX(300px)}
+            }
+        </style>
+    </head>
+	<body>
+        <div id="box1" onclick="btn1();">boxだよ</div>
+        <script>
+			const BOX1 = document.getElementById("box1");
+			function btn1(){
+				BOX1.style.animation="mystory 5s linear 0s 1 normal";
+				BOX1.style.animationFillMode="both";
+			}
+        </script>
+	</body>
+</html>

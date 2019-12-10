@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>11-1マウス座標</title>
+		<style>
+			*{margin: 0px;padding: 0px;}
+			/*margin 外余白　padding 内余白 */
+			div{
+				background-color:blue;
+				width: 20px; /*横幅*/
+				height: 20px;/*高さ*/
+			}
+		</style>
+    </head>
+	<body>
+		<div id = "enemy1"></div>
+		<div id = "box1">〇</div>
+		<script>
+			const BOX1 = document.getElementById("box1");
+			const ENEMY1 = document.getElementById("enemy1");
+			let x=0;
+			let y=0;
+			//イベント処理
+			//こういうときだけ関数を動かす->関数名のみ
+			/*BOX1.addEventListener("mousemove",move1);
+			BOX1
+			function move1(e){//e 引数 マウスの動作情報を保持
+				x = e.clientX;
+				y = e.clientY;
+				BOX1.innerHTML = "x="+x+"px/y="+y+"px";
+				BOX1.style.transform="translate("+(x)+"px,"+(y)+"px)";
+			}*/
+			setInterval(10000,moveenemy);
+			function moveenemy(){
+				let ex = Math.floor( Math.random()*300);
+				let ey = Math.floor( Math.random()*500);
+				ENEMY1.style.transform="translate("+(ex-10)+"px,"+(ey-10)+"px)";
+			}
+			document.onkeydown = function (e){
+				if(!e) e = window.event; // レガシー
+				var key_code = e.keyCode;
+				if(e.keyCode===65){
+					x=x-10;
+				}
+				if(e.keyCode===68){
+					x=x+10;
+				}
+				if(e.keyCode===87){
+					y=y-10;
+				}
+				if(e.keyCode===83){
+					y=y+10;
+				}
+				if(x<0){
+					x=0;
+				}
+				if(y<0){
+					y=0;
+				}
+				BOX1.style.transform="translate("+(x-10)+"px,"+(y-10)+"px)";
+				console.log("code:" + key_code);
+			};
+		</script>
+	</body>
+</html>
