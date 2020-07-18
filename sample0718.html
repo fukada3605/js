@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>トップページ</title>
+</head>
+
+<body>
+    <h2>load</h2>
+    <p>外部ファイルのテキストデータをそのままタグに置き換える</p>
+    <!-- javascript:void(0)：リンク表示、アクションは起こさない -->
+    <div><a id="load" href="javascript:void(0)">読み込み</a></div>
+    <div id="txtLoad">データ</div>
+
+    <br />
+
+    <p>外部ファイルのHTMLデータをそのままタグに置き換える</p>
+    <a id="load2" href="javascript:void(0)">読み込み(HTML)</a>
+    <div id="htmlLoad" >データ(HTML)</div>
+
+    <br />
+
+    <h2>get/post</h2>
+    <p>getまたはpostで外部データを取得して変数を格納</p>
+    <div id="getLoad">読み込んでいません（get）</div>
+
+    <br />
+
+    <h2>JSON</h2>
+    <p>JSON形式のデータを取得して変数に格納</p>
+    <div id="jsonLoad">読み込んでいません（JSON）</div>
+</body>
+
+</html>
